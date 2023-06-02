@@ -22,3 +22,18 @@
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align:center;
 }
+.bg-pastel-blue {
+    background-color: #c3d7e6; /* Color azul pastel */
+}
+
+.bg-pastel-yellow {
+    background-color: #f9e79f; /* Color amarillo pastel */
+}
+
+.bg-pastel-pink {
+    background-color: #ddccd6; /* Color rosa pastel */
+}
+
+.bg-pastel-green {
+    background-color: #d5e8d4; /* Color verde pastel */
+}
