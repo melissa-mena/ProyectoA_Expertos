@@ -27,7 +27,7 @@
         </nav>
 
         <div class="container">
-            <h2 class="mt-4">Preguntas sobre los 12 tipos de inteligencia</h2>
+            <h2 class="mt-4">Test de Inteligencias Múltiples</h2>
 
             <asp:Repeater ID="rptPreguntas" runat="server" OnItemDataBound="rptPreguntas_ItemDataBound">
                 <ItemTemplate>

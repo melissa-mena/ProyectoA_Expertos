@@ -71,6 +71,7 @@
     <Content Include="Index.aspx" />
     <Content Include="Login_InfoToolsSV.aspx" />
     <Content Include="Recursos\CSS\Estilos.css" />
+    <Content Include="VerResultado.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -100,6 +101,13 @@
       <DependentUpon>Login_InfoToolsSV.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerResultado.aspx.cs">
+      <DependentUpon>VerResultado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerResultado.aspx.designer.cs">
+      <DependentUpon>VerResultado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
