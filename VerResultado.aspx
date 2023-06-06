@@ -31,7 +31,29 @@
    </form>
 
          <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+             <h1>Su tipo de inteligencia es:</h1>
             <asp:Label ID="lblTipoInteligencia" runat="server" Text="" style="font-size: 20px; font-weight: bold;"></asp:Label>
          </div>
+    <div>
+        <h3>Lista de personas que tienen el mismo tipo de inteligencia que tu</h3>
+    <form id="form2" runat="server">
+        <table>
+            <tr>
+                <th>Nombre del usuario</th>
+                <th>Inteligencia</th>
+                <th>Cercania a su inteligencia</th>
+            </tr>
+            <asp:Repeater ID="rptPersonas" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td><%# Eval("Nombre") %></td>
+                        <td><%# Eval("Apellido") %></td>
+                        <td><%# Eval("Edad") %></td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+        </table>
+    </form>
+        </div>
 </body>
 </html>
