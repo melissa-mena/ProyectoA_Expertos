@@ -15,8 +15,10 @@ namespace Login_InfoToolsSV
                 Formulario formulario = new Formulario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
                 string tipoInteligencia = CalcularTipoInteligencia(respuestas);
+                string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
-                lblTipoInteligencia.Text = "Tu tipo de inteligencia es: "+ tipoInteligencia;
+                lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
+                ImTipoInteligencia.ImageUrl = imagenInteligencia;
             }
 
         }
@@ -25,7 +27,48 @@ namespace Login_InfoToolsSV
             
         }
 
-       
+        private static string UrlDeInteligencia(string intelignecia ) {
+            switch (intelignecia) {
+                case "espacial":
+                    intelignecia = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bruce_McCandless_II_during_EVA_in_1984.jpg/800px-Bruce_McCandless_II_during_EVA_in_1984.jpg";
+                    break;
+                case "musical":
+                    intelignecia = "https://i0.wp.com/www.learningbp.com/wp-content/uploads/2022/01/stefany-andrade-GbSCAAsU2Fo-unsplash-1-scaled.jpg?resize=1140%2C760&ssl=1";
+                    break;
+                case "lingüístico-verbal":
+                    intelignecia = "https://concepto.de/wp-content/uploads/2020/02/inteligencia-linguistica-e1582234158950.jpghttps://concepto.de/wp-content/uploads/2020/02/inteligencia-linguistica-e1582234158950.jpg";
+                    break;
+                case "lógico-matemático":
+                    intelignecia = "https://neuroeducacionweb.net/wp-content/uploads/2019/03/Inteligencia-l%C3%B3gico-matem%C3%A1tica-700x385.jpg";
+                    break;
+                case "corporal cinestésico":
+                    intelignecia = "https://www.lifeder.com/wp-content/uploads/2017/02/inteligencia-kinestesica-672x420.jpg";
+                    break;
+                case "intrapersonal":
+                    intelignecia = "https://gestion.pe/resizer/BxhtH1VZ4ozxXwXeSgz4WQzhvDk=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/B2S3QJ3J3JCPXF5BLE33W552T4.jpg";
+                    break;
+                case "interpersonal":
+                    intelignecia = "https://www.psicoactiva.com/wp-content/uploads/2019/01/inteligencia-intepersonal.jpg";
+                    break;
+                case "naturalista":
+                    intelignecia = "https://storage.googleapis.com/mv-prod-blog-es-assets-gcs/2019/07/rsz_a1_1-1-1024x683.jpg";
+                    break;
+                case "existencial":
+                    intelignecia = "https://www.intelitest.net/wp-content/uploads/inteligencia-existencial.jpg";
+                    break;
+
+                case "creativo":
+                    intelignecia = "https://cdn0.psicologia-online.com/es/posts/8/4/1/inteligencia_creativa_caracteristicas_ejemplos_y_como_desarrollarla_5148_600.webp";
+                    break;
+                case "emocional":
+                    intelignecia = "https://gestion.pe/resizer/VSxp5kpahxElgwJq9P8ASU538m0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/65XIIQULEFCR3FAVIYS2A2JJUQ.jpg";
+                    break;
+                case "colaborativo":
+                    intelignecia = "https://www.danielcolombo.com/wp-content/uploads/2020/02/inteligencia-colaborativa-personas-reunidas-mesa-trabajar-en-equipo-daniel-colombo.jpg";
+                    break;
+            }
+            return intelignecia;
+        }
         private static string CalcularTipoInteligencia(List<string> respuestas) // Algoritmo Euclides
         {
             Dictionary<string, double> distancias = new Dictionary<string, double>()

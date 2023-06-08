@@ -9,27 +9,21 @@
     <link rel="stylesheet" href="Recursos/CSS/Estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style type="text/css">
-        .auto-style1 {
-            height: 26px;
+
+        th, td {
+           width: 25%;
+           text-align: left;
+           vertical-align: top;
+           border: 1px solid #000;
+           border-collapse: collapse;
+           padding: 0.3em;
+           caption-side: bottom;
         }
-        .auto-style2 {
-            height: 26px;
-            width: 163px;
-        }
-        .auto-style3 {
-            width: 163px;
-        }
-        .auto-style4 {
-            height: 26px;
-            width: 166px;
-        }
-        .auto-style5 {
-            width: 166px;
-        }
+
     </style>
 </head>
 <script>
-   
+
 </script>
 <body>
     <form id="form1" runat="server">
@@ -49,19 +43,23 @@
         </nav>
    </form>
 
-         <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+         <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
              
             <asp:Label ID="lblTipoInteligencia" runat="server" Text="" style="font-size: 20px; font-weight: bold;"></asp:Label>
-             <br />
+             
          </div>
-    <div>
-        <h3>Lista de personas que tienen el mismo tipo de inteligencia que tu</h3>
-    <form id="form2" runat="server">
-        <table>
+    <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+        <asp:Image ID="ImTipoInteligencia" runat="server" Height="200px" Width="300px"  />
+    </div>
+    <div style="overflow-x:auto;" >
+        <h2 style="display: flex; justify-content: center; align-items: center;">Lista de personas que tienen el mismo tipo de inteligencia que tú</h2>
+
+        <table style="display: flex; justify-content: center; align-items: center;">
+            
             <tr>
-                <th class="auto-style2">Nombre del usuario</th>
-                <th class="auto-style4">Inteligencia</th>
-                <th class="auto-style1">Cercania a su inteligencia</th>
+                <th >Nombre del usuario</th>
+                <th >Inteligencia</th>
+                <th>Cercania a su inteligencia</th>
             </tr>
             <asp:Repeater ID="rptPersonas" runat="server">
                 <ItemTemplate>
@@ -73,7 +71,7 @@
                 </ItemTemplate>
             </asp:Repeater>
         </table>
-    </form>
+ 
         </div>
 </body>
 </html>
