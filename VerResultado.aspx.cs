@@ -20,6 +20,11 @@ namespace Login_InfoToolsSV
             }
 
         }
+
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login_InfoToolsSV.aspx");
+        }
         protected void BtnIngresar_Click (object sender,EventArgs e)
         {
             
@@ -77,12 +82,12 @@ namespace Login_InfoToolsSV
             {
                 if (kvp.Value < minDistancia)
                 {
-                    minDistancia = kvp.Value;
+                    minDistancia = kvp.Value; // enviar a bd
                     tipoInteligenciaPredominante = kvp.Key;
                 }
             }
 
-            return tipoInteligenciaPredominante;
+            return tipoInteligenciaPredominante; //enviar a bd
         }
 
 

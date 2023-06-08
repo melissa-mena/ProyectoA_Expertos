@@ -37,3 +37,7 @@
 .bg-pastel-green {
     background-color: #d5e8d4; /* Color verde pastel */
 }
+
+.is-invalid {
+    border-color: red;
+}

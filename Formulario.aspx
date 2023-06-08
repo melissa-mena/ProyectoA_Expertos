@@ -4,10 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head runat="server">
-    <title>Formulario - Preguntas sobre los 12 tipos de inteligencia</title>
+    <title>Formulario - Tipos de inteligencia</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="Recursos/CSS/Estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -18,15 +20,16 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
+                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Logout</a>
+                        <asp:Button ID="logoutButton" runat="server" CssClass="btn btn-link nav-link" Text="Logout" OnClick="logoutButton_Click" />
                     </li>
-                </ul>
-            </div>
+                 </ul>
+             </div>
         </nav>
 
         <div class="container">
+            <div class="alert-container"></div>
             <h2 class="mt-4">Test de Inteligencias Múltiples</h2>
 
             <asp:Repeater ID="rptPreguntas" runat="server" OnItemDataBound="rptPreguntas_ItemDataBound">
@@ -48,7 +51,5 @@
             </div>
         </div>
     </form>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
