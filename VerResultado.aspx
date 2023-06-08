@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="Recursos/CSS/Estilos.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+        }
+        .auto-style2 {
+            height: 26px;
+            width: 163px;
+        }
+        .auto-style3 {
+            width: 163px;
+        }
+        .auto-style4 {
+            height: 26px;
+            width: 166px;
+        }
+        .auto-style5 {
+            width: 166px;
+        }
+    </style>
 </head>
 <script>
    
@@ -31,17 +50,18 @@
    </form>
 
          <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-             <h1>Su tipo de inteligencia es:</h1>
+             
             <asp:Label ID="lblTipoInteligencia" runat="server" Text="" style="font-size: 20px; font-weight: bold;"></asp:Label>
+             <br />
          </div>
     <div>
         <h3>Lista de personas que tienen el mismo tipo de inteligencia que tu</h3>
     <form id="form2" runat="server">
         <table>
             <tr>
-                <th>Nombre del usuario</th>
-                <th>Inteligencia</th>
-                <th>Cercania a su inteligencia</th>
+                <th class="auto-style2">Nombre del usuario</th>
+                <th class="auto-style4">Inteligencia</th>
+                <th class="auto-style1">Cercania a su inteligencia</th>
             </tr>
             <asp:Repeater ID="rptPersonas" runat="server">
                 <ItemTemplate>
