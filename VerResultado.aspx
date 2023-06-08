@@ -21,12 +21,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
+                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Logout</a>
+                        <asp:Button ID="logoutButton" runat="server" CssClass="btn btn-link nav-link" Text="Logout" OnClick="logoutButton_Click" />
                     </li>
-                </ul>
-            </div>
+                 </ul>
+             </div>
         </nav>
    </form>
 
