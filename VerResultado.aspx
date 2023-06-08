@@ -64,9 +64,9 @@
             <asp:Repeater ID="rptPersonas" runat="server">
                 <ItemTemplate>
                     <tr>
-                        <td><%# Eval("Nombre") %></td>
-                        <td><%# Eval("Apellido") %></td>
-                        <td><%# Eval("Edad") %></td>
+                        <td><%# Eval("nombre") %></td>
+                        <td><%# Eval("contraseña") %></td>
+                        <td><%# Eval("id") %></td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>

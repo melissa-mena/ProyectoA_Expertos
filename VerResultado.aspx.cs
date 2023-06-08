@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
+using Servicios;
+using Entidades;
 
 namespace Login_InfoToolsSV
 { 
@@ -12,13 +14,16 @@ namespace Login_InfoToolsSV
         {
             if (!IsPostBack)
             {
+                RegistroServicios registroServicios = new RegistroServicios();
                 Formulario formulario = new Formulario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
+                List<Usuarios> usuarios = registroServicios.ObtenerUsuarios();
                 string tipoInteligencia = CalcularTipoInteligencia(respuestas);
                 string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
                 lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
                 ImTipoInteligencia.ImageUrl = imagenInteligencia;
+                rptPersonas.DataSource = usuarios;
             }
 
         }
