@@ -17,22 +17,22 @@ namespace Servicios
             return datos.obtenerTestUsuarios(distancia, intelignecia);
         }
      
-        public bool registrarUsuario(Usuarios nuevoUsuario)
+        public bool registrarUsuarioTest(UsuariosTest nuevoUsuario)
         {
             bool valida = false;
             bool result = false;
-            valida = existe(nuevoUsuario.id, nuevoUsuario.nombre, nuevoUsuario.contraseña);
-            if (valida)
-            {
+            //valida = existe(nuevoUsuario.IdUser, nuevoUsuario.Distance, nuevoUsuario.IntelligenceType);
+            //if (valida)
+            //{
                 result = datos.registrarTestUsuario(nuevoUsuario);
-            }
+            //}
             
             return result;
         }
 
-        public bool existe(int id, string nombre, string contraseña)
-        {
-            return datos.existe(id, nombre, contraseña);
-        }
+        //public bool existe(int id, float distance, string contraseña)
+        //{
+        //    return datos.existe(id, distance, contraseña);
+        //}
     }
 }

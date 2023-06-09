@@ -164,6 +164,10 @@ namespace Login_InfoToolsSV
                 return 2;
             }
         }
+       private bool RegistroDeUsuariosTest(UsuariosTest reultadosDeUsuario, RegistroServicios a)
+        {
+            return a.registrarUsuarioTest(reultadosDeUsuario);
+        }
     }
 
 }

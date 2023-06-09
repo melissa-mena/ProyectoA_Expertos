@@ -40,17 +40,17 @@ namespace AccesoData
             return listaUsuarios;
         }
         
-        public bool registrarTestUsuario(Usuarios nuevoUsuario)
+        public bool registrarTestUsuario(UsuariosTest nuevoUsuario)
         {
             SqlConnection sqlConnection = conexionDatos.conexion();
             sqlConnection.Open();
            
-                SqlCommand sqlCommand = new SqlCommand("INSERT INTO Tabla"
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [dbo].[TestResult]"
                     + "()"
                     , sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@IntelligenceType", nuevoUsuario.nombre);
-                sqlCommand.Parameters.AddWithValue("@IdUser", nuevoUsuario.contraseña);
-                sqlCommand.Parameters.AddWithValue("@Distance", (float)(nuevoUsuario.id));
+                sqlCommand.Parameters.AddWithValue("@IdUser", nuevoUsuario.IdUser);
+                sqlCommand.Parameters.AddWithValue("@Distance", (float)(nuevoUsuario.Distance));
                 bool result = true;
                 try
                 {
