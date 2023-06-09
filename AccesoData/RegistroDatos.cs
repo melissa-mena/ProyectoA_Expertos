@@ -12,9 +12,9 @@ namespace AccesoData
     {
         private ConexionDatos conexionDatos = new ConexionDatos();
        
-        public List<Usuarios> obtenerTestUsuarios()
+        public List<UsuariosTest> obtenerTestUsuarios()
         {
-            List<Usuarios> listaUsuarios = new List<Usuarios>();
+            List<UsuariosTest> listaUsuarios = new List<UsuariosTest>();
             SqlConnection sqlConnection = conexionDatos.conexion();
 
             SqlCommand sqlCommand = new SqlCommand(
@@ -27,10 +27,10 @@ namespace AccesoData
             reader = sqlCommand.ExecuteReader();
             while (reader.Read())
             {
-                Usuarios dato= new Usuarios();
+                UsuariosTest dato= new UsuariosTest();
                 dato.nombre = (reader["Username"].ToString());
-                dato.contraseña = (reader["IntelligenceType"].ToString());
-                dato.id = ((int)reader["Distance"]);
+                dato.IntelligenceType = (reader["IntelligenceType"].ToString());
+                dato.Distance = Convert.ToSingle(reader["Distance"]);
                 listaUsuarios.Add(dato);
 
             }

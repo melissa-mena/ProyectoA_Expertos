@@ -12,7 +12,7 @@ namespace Servicios
     {
         private DatosTest datos = new DatosTest();
         
-        public List<Usuarios> ObtenerUsuarios()
+        public List<UsuariosTest> ObtenerUsuarios()
         {
             return datos.obtenerTestUsuarios();
         }

@@ -17,13 +17,14 @@ namespace Login_InfoToolsSV
                 RegistroServicios registroServicios = new RegistroServicios();
                 Formulario formulario = new Formulario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
-                List<Usuarios> usuarios = registroServicios.ObtenerUsuarios();
+                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios();
                 string tipoInteligencia = CalcularTipoInteligencia(respuestas);
                 string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
                 lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
                 ImTipoInteligencia.ImageUrl = imagenInteligencia;
                 rptPersonas.DataSource = usuarios;
+                rptPersonas.DataBind();
             }
 
         }

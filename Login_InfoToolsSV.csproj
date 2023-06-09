@@ -79,6 +79,7 @@
     <Compile Include="AccesoData\ConexionDatos.cs" />
     <Compile Include="AccesoData\RegistroDatos.cs" />
     <Compile Include="AccesoData\LoginRegistroDatos.cs" />
+    <Compile Include="Entidades\UsuariosTest.cs" />
     <Compile Include="Entidades\Usuarios.cs" />
     <Compile Include="Formulario.aspx.cs">
       <DependentUpon>Formulario.aspx</DependentUpon>

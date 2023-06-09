@@ -51,7 +51,7 @@
     <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
         <asp:Image ID="ImTipoInteligencia" runat="server" Height="200px" Width="300px"  />
     </div>
-    <div style="overflow-x:auto;" >
+    <div style="overflow-x:auto; height: 50vh;" >
         <h2 style="display: flex; justify-content: center; align-items: center;">Lista de personas que tienen el mismo tipo de inteligencia que tú</h2>
 
         <table style="display: flex; justify-content: center; align-items: center;">
@@ -65,13 +65,14 @@
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("nombre") %></td>
-                        <td><%# Eval("contraseña") %></td>
-                        <td><%# Eval("id") %></td>
+                        <td><%# Eval("IntelligenceType") %></td>
+                        <td><%# Eval("Distance") %></td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>
         </table>
  
         </div>
+ 
 </body>
 </html>
