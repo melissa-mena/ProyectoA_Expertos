@@ -12,15 +12,17 @@ namespace AccesoData
     {
         private ConexionDatos conexionDatos = new ConexionDatos();
        
-        public List<UsuariosTest> obtenerTestUsuarios()
+        public List<UsuariosTest> obtenerTestUsuarios(float distancia,String inteligencia)
         {
             List<UsuariosTest> listaUsuarios = new List<UsuariosTest>();
             SqlConnection sqlConnection = conexionDatos.conexion();
 
             SqlCommand sqlCommand = new SqlCommand(
-                "SELECT  [IntelligenceType],[Username] , [Distance] " +
-                "FROM [dbo].[TestResult] " +
-                "LEFT JOIN [dbo].[User] ON [IdUser] = [dbo].[User].[Id];"
+                "SELECT  [IntelligenceType],[Username] , [Distance]  " +
+                "FROM[dbo].[TestResult] " +
+                "LEFT JOIN[dbo].[User] ON[IdUser] = [dbo].[User].[Id] " +
+                "WHERE[IntelligenceType] = "+"'"+inteligencia+"'"  +
+                "ORDER BY CASE WHEN [Distance] = "+ distancia +" THEN 0 ELSE 1 END, [Distance]; "
                 , sqlConnection);
             SqlDataReader reader;
             sqlConnection.Open();

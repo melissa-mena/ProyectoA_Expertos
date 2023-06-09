@@ -12,9 +12,9 @@ namespace Servicios
     {
         private DatosTest datos = new DatosTest();
         
-        public List<UsuariosTest> ObtenerUsuarios()
+        public List<UsuariosTest> ObtenerUsuarios(float distancia ,string intelignecia)
         {
-            return datos.obtenerTestUsuarios();
+            return datos.obtenerTestUsuarios(distancia, intelignecia);
         }
      
         public bool registrarUsuario(Usuarios nuevoUsuario)

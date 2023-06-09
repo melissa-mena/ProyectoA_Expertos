@@ -17,8 +17,9 @@ namespace Login_InfoToolsSV
                 RegistroServicios registroServicios = new RegistroServicios();
                 Formulario formulario = new Formulario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
-                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios();
-                string tipoInteligencia = CalcularTipoInteligencia(respuestas);
+                float distancia = CalcularTipoInteligencia(respuestas).Item1;
+                string tipoInteligencia = CalcularTipoInteligencia(respuestas).Item2;
+                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios(distancia,tipoInteligencia); //Agregar distancia
                 string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
                 lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
@@ -42,7 +43,7 @@ namespace Login_InfoToolsSV
                     intelignecia = "https://i0.wp.com/www.learningbp.com/wp-content/uploads/2022/01/stefany-andrade-GbSCAAsU2Fo-unsplash-1-scaled.jpg?resize=1140%2C760&ssl=1";
                     break;
                 case "lingüístico-verbal":
-                    intelignecia = "https://concepto.de/wp-content/uploads/2020/02/inteligencia-linguistica-e1582234158950.jpghttps://concepto.de/wp-content/uploads/2020/02/inteligencia-linguistica-e1582234158950.jpg";
+                    intelignecia = "http://1.bp.blogspot.com/-1sg04rxt4gU/Vfl5vfu07-I/AAAAAAAAA-c/Vtk1UiiLyk4/s1600/aprender-idiomas_01.jpg";
                     break;
                 case "lógico-matemático":
                     intelignecia = "https://neuroeducacionweb.net/wp-content/uploads/2019/03/Inteligencia-l%C3%B3gico-matem%C3%A1tica-700x385.jpg";
@@ -75,7 +76,7 @@ namespace Login_InfoToolsSV
             }
             return intelignecia;
         }
-        private static string CalcularTipoInteligencia(List<string> respuestas) // Algoritmo Euclides
+        private static (float, string) CalcularTipoInteligencia(List<string> respuestas) // Algoritmo Euclides
         {
             Dictionary<string, double> distancias = new Dictionary<string, double>()
             {
@@ -130,8 +131,8 @@ namespace Login_InfoToolsSV
                     tipoInteligenciaPredominante = kvp.Key;
                 }
             }
-
-            return tipoInteligenciaPredominante;
+            
+            return (Convert.ToSingle(minDistancia), tipoInteligenciaPredominante);
         }
 
 
