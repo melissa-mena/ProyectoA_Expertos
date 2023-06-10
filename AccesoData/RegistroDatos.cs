@@ -21,8 +21,8 @@ namespace AccesoData
                 "SELECT  [IntelligenceType],[Username] , [Distance]  " +
                 "FROM[dbo].[TestResult] " +
                 "LEFT JOIN[dbo].[User] ON[IdUser] = [dbo].[User].[Id] " +
-                "WHERE[IntelligenceType] = "+"'"+inteligencia+"'"  +
-                "ORDER BY CASE WHEN [Distance] = "+ distancia +" THEN 0 ELSE 1 END, [Distance]; "
+                "ORDER BY CASE WHEN [Distance] = "+ distancia +" THEN 0  "+
+                "WHEN[IntelligenceType] = "+ "'" + inteligencia + "'" + " THEN 0  ELSE 1 END, [Distance],[IntelligenceType];"
                 , sqlConnection);
             SqlDataReader reader;
             sqlConnection.Open();
