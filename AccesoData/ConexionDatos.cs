@@ -11,13 +11,19 @@ namespace AccesoData
     {
         public SqlConnection conexion()
         {
-            return new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
-        }
+            string serverName = "163.178.173.130";
+            string databaseName = " " + "IF-7103Proyecto1";
+            string username = "basesdedatos";
+            string password = "rpbases.2022";
+            string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};User ID={username};Password={password};";
+            return new SqlConnection(connectionString);
 
-        public object[] loguearse(String usuario)
+    }
+
+    public object[] loguearse(String usuario)
         {
             object[] rolNombreCompleto = new object[2];
-            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["LOGINConnectionString"].ConnectionString);
+            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
             SqlCommand sqlCommand = new SqlCommand("select   from " +
                 "   " +
                 "where  " +

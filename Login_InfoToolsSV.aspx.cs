@@ -11,7 +11,12 @@ namespace Login_InfoToolsSV
 
         protected void BtnIngresar_Click (object sender,EventArgs e)
         {
-           
+            Response.Redirect("Formulario.aspx");
+        }
+
+        protected void BtnIrARegistro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registro.aspx");
         }
     }
 }

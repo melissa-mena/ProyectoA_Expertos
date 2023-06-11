@@ -35,6 +35,9 @@
                     <div class="row">
                         <asp:Button ID="BtnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Ingresar" OnClick="BtnIngresar_Click" />
                     </div>
+                     <div class="row">
+                        <asp:Button ID="BtnRegistrarse" CssClass="btn btn-primary btn-dark" runat="server" Text="Registrarse" OnClick="BtnIrARegistro_Click" />
+                    </div>
                 </div>
             </form>
         </div>
