@@ -12,13 +12,16 @@ namespace AccesoData
         public SqlConnection conexion()
         {
             string serverName = "163.178.173.130";
-            string databaseName = " " + "IF-7103Proyecto1";
+
+            string databaseName = "IF-7103Proyecto1";
+
             string username = "basesdedatos";
             string password = "rpbases.2022";
             string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};User ID={username};Password={password};";
             return new SqlConnection(connectionString);
 
         }
+        
 
         public bool loguearse(String usuario, String contraseña)
         {

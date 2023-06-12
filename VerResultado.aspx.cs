@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
+using Servicios;
+using Entidades;
 
 namespace Login_InfoToolsSV
 { 
@@ -12,15 +14,21 @@ namespace Login_InfoToolsSV
         {
             if (!IsPostBack)
             {
+                RegistroServicios registroServicios = new RegistroServicios();
                 Formulario formulario = new Formulario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
-                string tipoInteligencia = CalcularTipoInteligencia(respuestas);
+                float distancia = CalcularTipoInteligencia(respuestas).Item1;
+                string tipoInteligencia = CalcularTipoInteligencia(respuestas).Item2;
+                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios(distancia,tipoInteligencia); //Agregar distancia
+                string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
-                lblTipoInteligencia.Text = "Tu tipo de inteligencia es: "+ tipoInteligencia;
+                lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
+                ImTipoInteligencia.ImageUrl = imagenInteligencia;
+                rptPersonas.DataSource = usuarios;
+                rptPersonas.DataBind();
             }
 
         }
-
         protected void logoutButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login_InfoToolsSV.aspx");
@@ -30,8 +38,49 @@ namespace Login_InfoToolsSV
             
         }
 
-       
-        private static string CalcularTipoInteligencia(List<string> respuestas) // Algoritmo Euclides
+        private static string UrlDeInteligencia(string intelignecia ) {
+            switch (intelignecia) {
+                case "espacial":
+                    intelignecia = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bruce_McCandless_II_during_EVA_in_1984.jpg/800px-Bruce_McCandless_II_during_EVA_in_1984.jpg";
+                    break;
+                case "musical":
+                    intelignecia = "https://i0.wp.com/www.learningbp.com/wp-content/uploads/2022/01/stefany-andrade-GbSCAAsU2Fo-unsplash-1-scaled.jpg?resize=1140%2C760&ssl=1";
+                    break;
+                case "lingüístico-verbal":
+                    intelignecia = "http://1.bp.blogspot.com/-1sg04rxt4gU/Vfl5vfu07-I/AAAAAAAAA-c/Vtk1UiiLyk4/s1600/aprender-idiomas_01.jpg";
+                    break;
+                case "lógico-matemático":
+                    intelignecia = "https://neuroeducacionweb.net/wp-content/uploads/2019/03/Inteligencia-l%C3%B3gico-matem%C3%A1tica-700x385.jpg";
+                    break;
+                case "corporal cinestésico":
+                    intelignecia = "https://www.lifeder.com/wp-content/uploads/2017/02/inteligencia-kinestesica-672x420.jpg";
+                    break;
+                case "intrapersonal":
+                    intelignecia = "https://gestion.pe/resizer/BxhtH1VZ4ozxXwXeSgz4WQzhvDk=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/B2S3QJ3J3JCPXF5BLE33W552T4.jpg";
+                    break;
+                case "interpersonal":
+                    intelignecia = "https://www.psicoactiva.com/wp-content/uploads/2019/01/inteligencia-intepersonal.jpg";
+                    break;
+                case "naturalista":
+                    intelignecia = "https://storage.googleapis.com/mv-prod-blog-es-assets-gcs/2019/07/rsz_a1_1-1-1024x683.jpg";
+                    break;
+                case "existencial":
+                    intelignecia = "https://www.intelitest.net/wp-content/uploads/inteligencia-existencial.jpg";
+                    break;
+
+                case "creativo":
+                    intelignecia = "https://cdn0.psicologia-online.com/es/posts/8/4/1/inteligencia_creativa_caracteristicas_ejemplos_y_como_desarrollarla_5148_600.webp";
+                    break;
+                case "emocional":
+                    intelignecia = "https://gestion.pe/resizer/VSxp5kpahxElgwJq9P8ASU538m0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/65XIIQULEFCR3FAVIYS2A2JJUQ.jpg";
+                    break;
+                case "colaborativo":
+                    intelignecia = "https://www.danielcolombo.com/wp-content/uploads/2020/02/inteligencia-colaborativa-personas-reunidas-mesa-trabajar-en-equipo-daniel-colombo.jpg";
+                    break;
+            }
+            return intelignecia;
+        }
+        private static (float, string) CalcularTipoInteligencia(List<string> respuestas) // Algoritmo Euclides
         {
             Dictionary<string, double> distancias = new Dictionary<string, double>()
             {
@@ -87,8 +136,8 @@ namespace Login_InfoToolsSV
                 }
             }
 
-            return tipoInteligenciaPredominante; //enviar a bd
-        }
+            
+            return (Convert.ToSingle(minDistancia), tipoInteligenciaPredominante);
 
 
         private static string GetTipoInteligenciaByPreguntaIndex(int preguntaIndex)
@@ -118,6 +167,10 @@ namespace Login_InfoToolsSV
             {
                 return 2;
             }
+        }
+       private bool RegistroDeUsuariosTest(UsuariosTest reultadosDeUsuario, RegistroServicios a)
+        {
+            return a.registrarUsuarioTest(reultadosDeUsuario);
         }
     }
 
