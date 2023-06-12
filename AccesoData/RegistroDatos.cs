@@ -21,8 +21,7 @@ namespace AccesoData
                 "SELECT [IntelligenceType], [Username], [Distance] " +
                 "FROM [dbo].[TestResult] " +
                 "LEFT JOIN [dbo].[User] ON [IdUser] = [dbo].[User].[Id] WHERE [IdUser]<> @id " +
-                "ORDER BY CASE" +
-                "WHEN [IntelligenceType] = @inteligencia THEN 0 ELSE 1 END, [Distance], [IntelligenceType];",
+                "ORDER BY CASE WHEN [IntelligenceType] = @inteligencia THEN 0 ELSE 1 END, [Distance], [IntelligenceType];",
                 sqlConnection);
 
             // Agregar parámetros
