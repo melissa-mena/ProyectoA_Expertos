@@ -131,13 +131,13 @@ namespace Login_InfoToolsSV
             {
                 if (kvp.Value < minDistancia)
                 {
-                    minDistancia = kvp.Value;
+                    minDistancia = kvp.Value; // enviar a bd
                     tipoInteligenciaPredominante = kvp.Key;
                 }
             }
+
             
             return (Convert.ToSingle(minDistancia), tipoInteligenciaPredominante);
-        }
 
 
         private static string GetTipoInteligenciaByPreguntaIndex(int preguntaIndex)

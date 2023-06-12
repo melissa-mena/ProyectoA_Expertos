@@ -11,7 +11,7 @@ namespace Login_InfoToolsSV
 {
     public partial class Formulario : System.Web.UI.Page
     {
-        //private List<string> respuestas = new List<string>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,10 +41,60 @@ namespace Login_InfoToolsSV
                 ddlRespuesta.DataBind();
             }
         }
+        protected void logoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login_InfoToolsSV.aspx");
+        }
 
 
+        //protected void btnEnviar_Click(object sender, EventArgs e)
+        //{
+        //    List<string> respuestas = new List<string>();
+
+        //    foreach (RepeaterItem item in rptPreguntas.Items)
+        //    {
+        //        var ddlRespuesta = (DropDownList)item.FindControl("ddlRespuesta");
+        //        respuestas.Add(ddlRespuesta.SelectedValue);
+        //    }
+        //    Session["Respuestas"] = respuestas;
+        //    Response.Redirect("VerResultado.aspx");
+        //}
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
+            bool hasError = false;
+
+            foreach (RepeaterItem item in rptPreguntas.Items)
+            {
+                var ddlRespuesta = (DropDownList)item.FindControl("ddlRespuesta");
+                if (ddlRespuesta.SelectedValue == "")
+                {
+                    ddlRespuesta.CssClass += " alert-danger";
+                    hasError = true;
+                }
+                else
+                {
+                    ddlRespuesta.CssClass = ddlRespuesta.CssClass.Replace(" alert-danger", "");
+                }
+            }
+            if (hasError)
+            {
+                string script = @"var alertElement = document.createElement('div');
+                      alertElement.className = 'alert alert-danger alert-dismissible fade show';
+                      alertElement.innerHTML = '<button type=""button"" class=""close"" data-dismiss=""alert"" onclick=""closeAlert()"" >&times;</button>'
+                                              + '<strong>¡Error!</strong> Por favor, selecciona una opción válida.';
+                      alertElement.style.position = 'fixed';
+                      alertElement.style.top = '0';
+                      alertElement.style.left = '0';
+                      alertElement.style.right = '0';
+                      alertElement.style.textAlign = 'center';
+                      document.body.appendChild(alertElement);
+
+                      function closeAlert() {
+                          alertElement.style.display = 'none';
+                      }";
+                ScriptManager.RegisterStartupScript(this, GetType(), "errorPopup", script, true);
+                return;
+            }
             List<string> respuestas = new List<string>();
 
             foreach (RepeaterItem item in rptPreguntas.Items)
@@ -52,9 +102,12 @@ namespace Login_InfoToolsSV
                 var ddlRespuesta = (DropDownList)item.FindControl("ddlRespuesta");
                 respuestas.Add(ddlRespuesta.SelectedValue);
             }
+
             Session["Respuestas"] = respuestas;
             Response.Redirect("VerResultado.aspx");
         }
+
+
         public  List<string> ObtenerRespuestas()
         {
             List<string> resultado = Session["Respuestas"] as List<string>;
