@@ -12,27 +12,24 @@ namespace Servicios
     {
         private DatosTest datos = new DatosTest();
         
-        public List<UsuariosTest> ObtenerUsuarios(float distancia ,string intelignecia)
+        public List<UsuariosTest> ObtenerUsuarios(float distancia ,string intelignecia,int id)
         {
-            return datos.obtenerTestUsuarios(distancia, intelignecia);
+            return datos.obtenerTestUsuarios(distancia, intelignecia, id);
         }
      
-        public bool registrarUsuarioTest(UsuariosTest nuevoUsuario)
+        public bool registrarUsuarioTest(UsuariosTest nuevoUsuario, Usuarios user)
         {
-            bool valida = false;
+            int valida ;
             bool result = false;
-            //valida = existe(nuevoUsuario.IdUser, nuevoUsuario.Distance, nuevoUsuario.IntelligenceType);
-            //if (valida)
-            //{
-                result = datos.registrarTestUsuario(nuevoUsuario);
-            //}
-            
+            valida = getuserId(user.usuario,user.contraseña);
+            nuevoUsuario.IdUser = valida;
+            result = datos.registrarTestUsuario(nuevoUsuario);
             return result;
         }
 
-        //public bool existe(int id, float distance, string contraseña)
-        //{
-        //    return datos.existe(id, distance, contraseña);
-        //}
+        public int getuserId(string name,string password)
+        {
+            return datos.existe(name,password);
+        }
     }
 }

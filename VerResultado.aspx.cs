@@ -16,16 +16,24 @@ namespace Login_InfoToolsSV
             {
                 RegistroServicios registroServicios = new RegistroServicios();
                 Formulario formulario = new Formulario();
+                Login_InfoToolsSV log = new Login_InfoToolsSV();
+                Usuarios user = log.ObtenerUsuario();
                 List<string> respuestas = formulario.ObtenerRespuestas();
                 float distancia = CalcularTipoInteligencia(respuestas).Item1;
                 string tipoInteligencia = CalcularTipoInteligencia(respuestas).Item2;
-                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios(distancia,tipoInteligencia); //Agregar distancia
+                UsuariosTest miResult = new UsuariosTest();
+                miResult.IntelligenceType = tipoInteligencia;
+                miResult.Distance = distancia;
+                miResult.nombre = user.usuario;
+                List<UsuariosTest> usuarios = registroServicios.ObtenerUsuarios(distancia,tipoInteligencia, registroServicios.getuserId(user.usuario, user.contraseña));
+                
                 string imagenInteligencia = UrlDeInteligencia(tipoInteligencia);
                 // Establecer el texto del control Label
                 lblTipoInteligencia.Text = "Tu tipo de inteligencia es: " + tipoInteligencia;
                 ImTipoInteligencia.ImageUrl = imagenInteligencia;
                 rptPersonas.DataSource = usuarios;
                 rptPersonas.DataBind();
+                registroServicios.registrarUsuarioTest(miResult, user);
             }
 
         }
@@ -33,13 +41,8 @@ namespace Login_InfoToolsSV
         {
             Response.Redirect("Login_InfoToolsSV.aspx");
         }
-        protected void BtnIngresar_Click (object sender,EventArgs e)
-        {
-            
-        }
-
-        private static string UrlDeInteligencia(string intelignecia ) 
-        {
+     
+        private static string UrlDeInteligencia(string intelignecia ) {
             switch (intelignecia) {
                 case "espacial":
                     intelignecia = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bruce_McCandless_II_during_EVA_in_1984.jpg/800px-Bruce_McCandless_II_during_EVA_in_1984.jpg";
@@ -169,10 +172,7 @@ namespace Login_InfoToolsSV
                 return 2;
             }
         }
-       private bool RegistroDeUsuariosTest(UsuariosTest reultadosDeUsuario, RegistroServicios a)
-       {
-            return a.registrarUsuarioTest(reultadosDeUsuario);
-       }
+
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using AccesoData;
+using Entidades;
 using System;
 
 namespace Login_InfoToolsSV
@@ -14,10 +15,15 @@ namespace Login_InfoToolsSV
         {
             string user = tbUsuario.Text;
             string pass = tbPassword.Text;
-
+            
             ConexionDatos conexionDatos = new ConexionDatos();
             if (conexionDatos.loguearse(user, pass))
             {
+
+                Usuarios login= new Usuarios();
+                login.contraseña = pass;
+                login.usuario = user;
+                Session["login"] = login;
                 Response.Redirect("Formulario.aspx");
             }
             else
@@ -30,6 +36,11 @@ namespace Login_InfoToolsSV
         protected void BtnIrARegistro_Click(object sender, EventArgs e)
         {
             Response.Redirect("Registro.aspx");
+        }
+        public Usuarios ObtenerUsuario()
+        {
+            Usuarios login = Session["login"] as Usuarios;
+            return login;
         }
     }
 }
