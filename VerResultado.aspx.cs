@@ -38,7 +38,8 @@ namespace Login_InfoToolsSV
             
         }
 
-        private static string UrlDeInteligencia(string intelignecia ) {
+        private static string UrlDeInteligencia(string intelignecia ) 
+        {
             switch (intelignecia) {
                 case "espacial":
                     intelignecia = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Bruce_McCandless_II_during_EVA_in_1984.jpg/800px-Bruce_McCandless_II_during_EVA_in_1984.jpg";
@@ -136,10 +137,10 @@ namespace Login_InfoToolsSV
                 }
             }
 
-            
+
             return (Convert.ToSingle(minDistancia), tipoInteligenciaPredominante);
 
-
+        }
         private static string GetTipoInteligenciaByPreguntaIndex(int preguntaIndex)
         {
             // Mapear el índice de la pregunta al tipo de inteligencia correspondiente
@@ -169,9 +170,9 @@ namespace Login_InfoToolsSV
             }
         }
        private bool RegistroDeUsuariosTest(UsuariosTest reultadosDeUsuario, RegistroServicios a)
-        {
+       {
             return a.registrarUsuarioTest(reultadosDeUsuario);
-        }
+       }
     }
 
 }
