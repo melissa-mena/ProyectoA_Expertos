@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccesoData;
+using System;
 
 namespace Login_InfoToolsSV
 {
@@ -9,9 +10,21 @@ namespace Login_InfoToolsSV
 
         }
 
-        protected void BtnIngresar_Click (object sender,EventArgs e)
+        protected void BtnIngresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Formulario.aspx");
+            string user = tbUsuario.Text;
+            string pass = tbPassword.Text;
+
+            ConexionDatos conexionDatos = new ConexionDatos();
+            if (conexionDatos.loguearse(user, pass))
+            {
+                Response.Redirect("Formulario.aspx");
+            }
+            else
+            {
+                lblError.Text = "Error con el inicio de sesión, por favor revise los datos ingresados";
+            }
+            
         }
 
         protected void BtnIrARegistro_Click(object sender, EventArgs e)

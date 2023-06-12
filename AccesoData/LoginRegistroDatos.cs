@@ -24,7 +24,7 @@ namespace AccesoData
             while (reader.Read())
             {
                 Usuarios dato= new Usuarios();
-                dato.nombre = (reader["nombre"].ToString());
+                dato.usuario = (reader["usuario"].ToString());
                 dato.contraseña = (reader["contraseña"].ToString());
 
                 listaUsuarios.Add(dato);
@@ -42,7 +42,7 @@ namespace AccesoData
                 SqlCommand sqlCommand = new SqlCommand("INSERT INTO Tabla"
                     + "()"
                     , sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@nombre", nuevoUsuario.nombre);
+                sqlCommand.Parameters.AddWithValue("@nombre", nuevoUsuario.usuario);
                 sqlCommand.Parameters.AddWithValue("@contraseña", nuevoUsuario.contraseña);
                 bool result = true;
                 try

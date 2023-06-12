@@ -20,14 +20,10 @@ namespace AccesoData
 
     }
 
-    public object[] loguearse(String usuario)
+    public bool loguearse(String usuario, String contraseña)
         {
-            object[] rolNombreCompleto = new object[2];
             SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
-            SqlCommand sqlCommand = new SqlCommand("select   from " +
-                "   " +
-                "where  " +
-                " =  and  =  ;", sqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("select * from [User] where Username = @usuario;", sqlConnection);
             sqlCommand.Parameters.AddWithValue("@usuario", usuario.ToLower());
             SqlDataReader reader;
             sqlConnection.Open();
@@ -35,16 +31,18 @@ namespace AccesoData
             if (reader.Read())
             {
 
-                int rol = Int32.Parse(reader.GetValue(0).ToString());
-                String nombreCompleto = reader.GetValue(1).ToString();
+                String user = reader.GetValue(1).ToString();
+                String pass = reader.GetValue(3).ToString();
 
-                rolNombreCompleto[0] = rol;
-                rolNombreCompleto[1] = nombreCompleto;
+                if(user==usuario && pass==contraseña)
+                {
+                    return true;    
+                }
             }
 
             sqlConnection.Close();
 
-            return rolNombreCompleto;
+            return false;
         }
     }
 }
