@@ -18,9 +18,9 @@ namespace AccesoData
             string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};User ID={username};Password={password};";
             return new SqlConnection(connectionString);
 
-    }
+        }
 
-    public bool loguearse(String usuario, String contraseña)
+        public bool loguearse(String usuario, String contraseña)
         {
             SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
             SqlCommand sqlCommand = new SqlCommand("select * from [User] where Username = @usuario;", sqlConnection);
@@ -34,9 +34,9 @@ namespace AccesoData
                 String user = reader.GetValue(1).ToString();
                 String pass = reader.GetValue(3).ToString();
 
-                if(user==usuario && pass==contraseña)
+                if (user == usuario && pass == contraseña)
                 {
-                    return true;    
+                    return true;
                 }
             }
 
@@ -44,5 +44,21 @@ namespace AccesoData
 
             return false;
         }
+
+        public int registrarse(String usuario, String contraseña, String email)
+        {
+            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User] (Username, Password, Email) VALUES (@usuario, @contraseña, @email);", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@usuario", usuario);
+            sqlCommand.Parameters.AddWithValue("@contraseña", contraseña);
+            sqlCommand.Parameters.AddWithValue("@email", email);
+            sqlConnection.Open();
+            int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return rowsAffected;
+        }
+
     }
 }

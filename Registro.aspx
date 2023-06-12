@@ -25,7 +25,7 @@
                     </div>
                     <div>
                         <asp:Label ID="Label1" runat="server" Text="Email: "></asp:Label>
-                        <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
+                        <asp:TextBox ID="tbEmail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
                     </div>
                     <div>
                         <asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>
@@ -36,10 +36,10 @@
                         <asp:Label runat="server" CssClass="alert-danger" ID="lblError"></asp:Label>
                     </div>
                     <br />
-                    <div class="row">
+                    <div class="row" style="padding: 10px;">
                         <asp:Button ID="BtnRegistrarse" CssClass="btn btn-primary btn-dark" runat="server" Text="Registrarse" OnClick="BtnRegistrar_Click" />
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding: 10px;">
                         <asp:Button ID="BtnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Inicio de sesión" OnClick="BtnIrAIngresar_Click" />
                     </div>
                 </div>
