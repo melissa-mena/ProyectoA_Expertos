@@ -11,17 +11,19 @@ namespace AccesoData
     {
         public SqlConnection conexion()
         {
-            return new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
+            string serverName = "163.178.173.130";
+            string databaseName = " " + "IF-7103Proyecto1";
+            string username = "basesdedatos";
+            string password = "rpbases.2022";
+            string connectionString = $"Data Source={serverName};Initial Catalog={databaseName};User ID={username};Password={password};";
+            return new SqlConnection(connectionString);
+
         }
 
-        public object[] loguearse(String usuario)
+        public bool loguearse(String usuario, String contraseña)
         {
-            object[] rolNombreCompleto = new object[2];
-            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["LOGINConnectionString"].ConnectionString);
-            SqlCommand sqlCommand = new SqlCommand("select   from " +
-                "   " +
-                "where  " +
-                " =  and  =  ;", sqlConnection);
+            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
+            SqlCommand sqlCommand = new SqlCommand("select * from [User] where Username = @usuario;", sqlConnection);
             sqlCommand.Parameters.AddWithValue("@usuario", usuario.ToLower());
             SqlDataReader reader;
             sqlConnection.Open();
@@ -29,16 +31,34 @@ namespace AccesoData
             if (reader.Read())
             {
 
-                int rol = Int32.Parse(reader.GetValue(0).ToString());
-                String nombreCompleto = reader.GetValue(1).ToString();
+                String user = reader.GetValue(1).ToString();
+                String pass = reader.GetValue(3).ToString();
 
-                rolNombreCompleto[0] = rol;
-                rolNombreCompleto[1] = nombreCompleto;
+                if (user == usuario && pass == contraseña)
+                {
+                    return true;
+                }
             }
 
             sqlConnection.Close();
 
-            return rolNombreCompleto;
+            return false;
         }
+
+        public int registrarse(String usuario, String contraseña, String email)
+        {
+            SqlConnection sqlConnection = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ExpertosConnectionString"].ConnectionString);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User] (Username, Password, Email) VALUES (@usuario, @contraseña, @email);", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@usuario", usuario);
+            sqlCommand.Parameters.AddWithValue("@contraseña", contraseña);
+            sqlCommand.Parameters.AddWithValue("@email", email);
+            sqlConnection.Open();
+            int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            return rowsAffected;
+        }
+
     }
 }

@@ -7,20 +7,12 @@ using System.Threading.Tasks;
 
 namespace Servicios
 {
-   
+
     public class ConexionServicios
     {
         #region variables globales
         ConexionDatos conexionDatos = new ConexionDatos();
-    #endregion
+        #endregion
 
-    #region metodos
-
-   
-    public object[] loguearse(String usuario)
-    {
-        return conexionDatos.loguearse(usuario);
     }
-    #endregion
-}
 }

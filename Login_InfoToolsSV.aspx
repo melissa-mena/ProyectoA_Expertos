@@ -14,26 +14,29 @@
 <body class="bg-light">
     <div class="wrapper">
         <div class="formcontent">
-            <form id="formulario_login" runat="server">
+            <form id="formulario_login" runat="server" action="Login_InfoToolsSV.aspx" method="post">
                 <div class="form-control">
                     <div class="row">
                         <asp:Label class="h2" ID="lblBienvenida" runat="server" Text="Bienvenido/a al Sistema"></asp:Label>
                     </div>
                     <div>
-                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario:"></asp:Label>
-                        <asp:TextBox ID="tbUsuario" CssClass="form-control" runat="server" placeholder="Nombre de Usuario"></asp:TextBox>
+                        <asp:Label ID="lblUsuario" runat="server" Text="Usuario: "></asp:Label>
+                        <asp:TextBox ID="tbUsuario" CssClass="form-control" runat="server" type="text" name="user" placeholder="Nombre de Usuario"></asp:TextBox>
                     </div>
                     <div>
                         <asp:Label ID="lblPassword" runat="server" Text="Password:"></asp:Label>
-                        <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" placeholder="Password"></asp:TextBox>
+                        <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" type="text" name="pass" placeholder="Password"></asp:TextBox>
                     </div>
                     <hr />
                     <div class="row">
                         <asp:Label runat="server" CssClass="alert-danger" ID="lblError"></asp:Label>
                     </div>
                     <br />
-                    <div class="row">
-                        <asp:Button ID="BtnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Ingresar" OnClick="BtnIngresar_Click" />
+                    <div class="row" style="padding: 10px;">
+                        <asp:Button ID="BtnIngresar" CssClass="btn btn-primary btn-dark" runat="server" Text="Ingresar" type="submit" value="Submit" OnClick="BtnIngresar_Click" />
+                    </div>
+                     <div class="row" style="padding: 10px;">
+                        <asp:Button ID="BtnRegistrarse" CssClass="btn btn-primary btn-dark" runat="server" Text="Registrarse" type="submit" value="Submit" OnClick="BtnIrARegistro_Click" />
                     </div>
                 </div>
             </form>

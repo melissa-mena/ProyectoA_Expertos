@@ -21,7 +21,7 @@ namespace Servicios
         {
             bool valida = false;
             bool result = false;
-            valida = existe(nuevoUsuario.id, nuevoUsuario.nombre, nuevoUsuario.contraseña);
+            valida = existe(nuevoUsuario.id, nuevoUsuario.usuario, nuevoUsuario.contraseña);
             if (valida)
             {
                 result = datos.registrarUsuario(nuevoUsuario);
