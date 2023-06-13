@@ -41,3 +41,6 @@
 .is-invalid {
     border-color: red;
 }
+.custom-btn {
+    background-color: #c3d7e6;
+}

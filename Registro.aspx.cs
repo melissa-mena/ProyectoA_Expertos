@@ -19,15 +19,29 @@ namespace Login_InfoToolsSV
             string user = tbUsuario.Text;
             string pass = tbPassword.Text;
             string email = tbEmail.Text;
+            lblError.Visible = false;
+            lblSuccess.Visible = false;
 
-            ConexionDatos conexionDatos = new ConexionDatos();
-            if (conexionDatos.registrarse(user, pass, email)>0)
+           ConexionDatos conexionDatos = new ConexionDatos();
+            if (user != "" && pass != "" && email != "")
             {
-                lblError.Text = "Registro completado";
+                if (conexionDatos.registrarse(user, pass, email) > 0)
+                {
+                    lblSuccess.Visible = true;
+                    lblSuccess.Text = "Registro completado";
+                }
+                else
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "Error con el registro, por favor, intente nuevamente";
+                }
             }
             else
             {
-                lblError.Text = "Error con el registro, por favor, intente nuevamente";
+                lblError.Visible = true;
+                lblError.Text = "Por favor complete todos los datos solicitados";
+                
+
             }
         }
 
