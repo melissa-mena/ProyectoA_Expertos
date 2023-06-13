@@ -81,7 +81,7 @@
                                 <asp:TextBox ID="tbEmail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
                                 
                                 <br />
-                                <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" placeholder="Password"></asp:TextBox>
+                                <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" placeholder="Contraseña"></asp:TextBox>
                                 
                                 <br />
                                

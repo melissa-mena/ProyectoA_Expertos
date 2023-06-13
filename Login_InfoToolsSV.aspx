@@ -74,7 +74,7 @@
                                 <asp:TextBox ID="tbUsuario" CssClass="form-control" runat="server" type="text" name="user" placeholder="Nombre de Usuario"></asp:TextBox>
                     
                                 <br /> 
-                                <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" type="text" name="pass" placeholder="Password" ></asp:TextBox>
+                                <asp:TextBox ID="tbPassword" CssClass="form-control" TextMode="Password" runat="server" type="text" name="pass" placeholder="Contraseña" ></asp:TextBox>
                                 <br />
                                  <hr />
                                     <div class="row">

@@ -59,14 +59,12 @@
             <tr>
                 <th >Nombre del usuario</th>
                 <th >Inteligencia</th>
-                <th>Cercania a su inteligencia</th>
             </tr>
             <asp:Repeater ID="rptPersonas" runat="server">
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("nombre") %></td>
                         <td><%# Eval("IntelligenceType") %></td>
-                        <td><%# Eval("Distance") %></td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>
